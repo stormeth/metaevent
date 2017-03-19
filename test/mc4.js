@@ -20,7 +20,34 @@ contract('Mc4', function(accounts) {
             meta = instance;
 
             return meta.sendCoin(ac2, amount);
-        }).then(function() {
+//        }).then(function() {
+
+
+        }).then(function(result) {
+          // result is an object with the following values:
+          //
+          // result.tx      => transaction hash, string
+          // result.logs    => array of decoded events that were triggered within this transaction
+          // result.receipt => transaction receipt object, which includes gas used
+
+          // We can loop through result.logs to see if we triggered the Transfer event.
+
+          console.log('result.logs.length = ',result.logs.length)
+
+          for (var i = 0; i < result.logs.length; i++) {
+            var log = result.logs[i];
+
+            if (log.event == "Transfer") {
+              // We found the event!
+              break;
+            }
+          }
+//        }).catch(function(err) {
+//          // There was an error! Handle it.
+//        });
+
+
+
 
             return meta.sendCoin(ac2, amount).then(function(tx) {
                 // console.log(tx);

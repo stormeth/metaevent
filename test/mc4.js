@@ -18,10 +18,7 @@ contract('Mc4', function(accounts) {
 
         return MetaCoin.deployed().then(function(instance) {
             meta = instance;
-
             return meta.sendCoin(ac2, amount);
-//        }).then(function() {
-
 
         }).then(function(result) {
           // result is an object with the following values:
@@ -38,16 +35,13 @@ contract('Mc4', function(accounts) {
             var log = result.logs[i];
 
             if (log.event == "Transfer") {
-              // We found the event!
+              console.log("We found the transfer event !");
+              console.log(log.event);
+              // console.log(log);
+              // console.log(log.args);
               break;
             }
           }
-//        }).catch(function(err) {
-//          // There was an error! Handle it.
-//        });
-
-
-
 
             return meta.sendCoin(ac2, amount).then(function(tx) {
                 // console.log(tx);
